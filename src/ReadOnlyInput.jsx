@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 
 export default function ReadOnlyInput({ defaultValue }) {
     const [isCopied, setIsCopied] = useState(false);
-    const [defaultValueToCopy, setDefaultValueToCopy] = useState(defaultValue);
 
     const copyToClipboard = async () => {
         try {
             // Tenta usar a API moderna para copiar texto
-            await navigator.clipboard.writeText(defaultValueToCopy);
+            await navigator.clipboard.writeText(defaultValue);
             setIsCopied(true);
         } catch (err) {
             console.error("Erro ao copiar: ", err);
@@ -31,7 +30,7 @@ export default function ReadOnlyInput({ defaultValue }) {
             <div className="relative flex items-center">
                 <input
                     type="text"
-                    value={defaultValueToCopy}
+                    value={defaultValue}
                     readOnly
                     onClick={copyToClipboard}
                     className="bg-transparent border border-gray-300 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 block w-full p-4 pr-10 font-mono" // Use w-full para ocupar toda a largura

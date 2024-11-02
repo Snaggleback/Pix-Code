@@ -2,11 +2,11 @@ import GenericButton from "./GenericButton";
 import ReadOnlyInput from "./ReadOnlyInput";
 import PIXCode from "../PIXCode";
 import { QRious } from "react-qrious";
-import pixLogo from "./assets/pix-logo.png";
+import { FaPix } from "react-icons/fa6";
 
 // Componente para exibir a área de pagamento
 export default function PaymentArea({ data, onBack }) {
-    const firstName = PIXCode.formatText(data?.name) || "";
+    const firstName = data?.name.trim() || "";
     const value = data?.value || 0;
     const message = data?.message || "";
 
@@ -23,8 +23,8 @@ export default function PaymentArea({ data, onBack }) {
 
     return (
         <div className="text-center space-y-4 w-full flex flex-col">
-            <h1 className="text-2xl font-bold text-green-600 mt-2">
-                Obrigado {firstName}!
+            <h1 className="text-2xl font-bold mt-2">
+                Valeu {firstName}!
             </h1>
             <p className="text-zinc-700 text-sm">
                 Este código Pix é de uso geral e não tem data de validade.
@@ -32,11 +32,7 @@ export default function PaymentArea({ data, onBack }) {
             <div className="relative">
                 <QRious value={copyPastePix} size={250} className="m-auto" />
                 <div className="absolute inset-0 w-full h-full flex">
-                    <img
-                        src={pixLogo}
-                        alt="Logo PIX"
-                        className="m-auto w-12 h-12 bg-white p-1.5"
-                    />
+                    <FaPix className="m-auto w-14 h-14 bg-white p-3 text-orange-500"></FaPix>
                 </div>
             </div>
             <h2 className="text-lg font-bold">Pix Copia e Cola</h2>

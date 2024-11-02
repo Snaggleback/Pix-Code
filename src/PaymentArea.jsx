@@ -17,7 +17,6 @@ export default function PaymentArea({ data, onBack }) {
         "Italo S Luz",
         "",
         message,
-        "PIXCODE",
     );
 
     const copyPastePix = pixCode.generate();

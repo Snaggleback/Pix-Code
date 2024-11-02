@@ -1,6 +1,5 @@
 import GenericButton from "./GenericButton";
 import ReadOnlyInput from "./ReadOnlyInput";
-import { unformatCurrency } from "./CurrencyInput";
 import PIXCode from "../PIXCode";
 import { QRious } from "react-qrious";
 import pixLogo from "./assets/pix-logo.png";
@@ -8,7 +7,7 @@ import pixLogo from "./assets/pix-logo.png";
 // Componente para exibir a área de pagamento
 export default function PaymentArea({ data, onBack }) {
     const firstName = PIXCode.formatText(data?.name) || "";
-    const value = unformatCurrency(data?.value) || 0;
+    const value = data?.value || 0;
     const message = data?.message || "";
 
     const pixCode = new PIXCode(

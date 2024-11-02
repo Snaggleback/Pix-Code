@@ -63,7 +63,8 @@ export default class PIXCode {
 
     set name(value) {
         const formattedName = PIXCode.formatText(value).toUpperCase();
-        this._name = formattedName.slice(0, 25).padEnd(25, "X");
+        this._name = formattedName.slice(0, 25)
+        if (formattedName.length === 0) this._name = "X".repeat(4);
     }
     get name() {
         return this._name;
@@ -71,7 +72,8 @@ export default class PIXCode {
 
     set city(value) {
         const formattedCity = PIXCode.formatText(value).toUpperCase();
-        this._city = formattedCity.slice(0, 15).padEnd(15, "X");
+        this._city = formattedCity.slice(0, 15);
+        if (formattedCity.length === 0) this._city = "X".repeat(4);
     }
     get city() {
         return this._city;

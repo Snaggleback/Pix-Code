@@ -25,7 +25,9 @@ export default function PaymentArea({ data, onBack }) {
     return (
         <div className="text-center space-y-4 w-full flex flex-col break-words">
             <h1 className="text-2xl font-bold mt-2">Valeu {firstName}!</h1>
-            <h2 className="text-sm font-bold text-zinc-500">Pix gerado no valor de R$ {formatCurrency(value * 100)}</h2>
+            <h2 className="text-sm font-bold text-zinc-400">
+                Pix gerado no valor de R$ {formatCurrency(value * 100)}
+            </h2>
             <div className="relative">
                 <QRious value={copyPastePix} size={250} className="m-auto" />
                 <div className="absolute inset-0 w-full h-full flex">

@@ -3,6 +3,7 @@ import ReadOnlyInput from "./ReadOnlyInput";
 import { unformatCurrency } from "./CurrencyInput";
 import PIXCode from "../PIXCode";
 import { QRious } from "react-qrious";
+import pixLogo from "./assets/pix-logo.png";
 
 // Componente para exibir a área de pagamento
 export default function PaymentArea({ data, onBack }) {
@@ -34,7 +35,7 @@ export default function PaymentArea({ data, onBack }) {
                 <QRious value={copyPastePix} size={250} className="m-auto" />
                 <div className="absolute inset-0 w-full h-full flex">
                     <img
-                        src="/src/assets/pix-logo.png"
+                        src={pixLogo}
                         alt="Logo PIX"
                         className="m-auto w-12 h-12 bg-white p-1.5"
                     />

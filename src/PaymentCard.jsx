@@ -42,6 +42,7 @@ function UserInfo({ name, subtitle }) {
 // Componente do formulário
 function Form({ onSubmit }) {
     const [errors, setErrors] = useState({});
+    const [messageLength, setMessageLength] = useState(0); // Estado para o comprimento da mensagem
     const nameRef = useRef();
     const valueRef = useRef();
     const messageRef = useRef();
@@ -57,10 +58,13 @@ function Form({ onSubmit }) {
         const validationErrors = validateFormData(formData, minValue);
         setErrors(validationErrors);
 
-        // Chame onSubmit com os dados do formulário se não houver erros
         if (!Object.keys(validationErrors).length) {
-            onSubmit(formData); // Passa os dados do formulário
+            onSubmit(formData);
         }
+    };
+
+    const handleMessageChange = (event) => {
+        setMessageLength(event.target.value.length); // Atualiza o comprimento da mensagem
     };
 
     return (
@@ -88,11 +92,12 @@ function Form({ onSubmit }) {
                 name="message"
                 id="message"
                 isMessage
+                onChange={handleMessageChange} // Adiciona o evento onChange
             />
             {errors.message && <ErrorMessage message={errors.message} />}
 
             <CharacterCounter
-                currentLength={messageRef.current?.value.length || 0}
+                currentLength={messageLength} // Usa o estado para o comprimento
                 maxLength={200}
             />
             <GenericButton className="uppercase w-full" onClick={handleSubmit}>

@@ -88,7 +88,7 @@ function Form({ onSubmit }) {
             <GenericInput
                 ref={messageRef}
                 label="Mensagem"
-                maxLength={200}
+                maxLength={35}
                 name="message"
                 id="message"
                 isMessage
@@ -98,7 +98,7 @@ function Form({ onSubmit }) {
 
             <CharacterCounter
                 currentLength={messageLength} // Usa o estado para o comprimento
-                maxLength={200}
+                maxLength={35}
             />
             <GenericButton className="w-full" onClick={handleSubmit}>
                 Continuar
@@ -149,8 +149,8 @@ function validateFormData({ name, value, message }, minValue) {
         errors.value = "O valor está abaixo do permitido";
     }
 
-    if (message.length > 200) {
-        errors.message = "Mensagem deve ter no máximo 200 caracteres";
+    if (message.length > 35) {
+        errors.message = "Mensagem deve ter no máximo 35 caracteres";
     }
 
     return errors;

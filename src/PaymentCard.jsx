@@ -46,7 +46,7 @@ function Form({ onSubmit }) {
     const nameRef = useRef();
     const valueRef = useRef();
     const messageRef = useRef();
-    const minValue = 2;
+    const minValue = 1;
 
     const handleSubmit = () => {
         const formData = {
@@ -100,7 +100,7 @@ function Form({ onSubmit }) {
                 currentLength={messageLength} // Usa o estado para o comprimento
                 maxLength={200}
             />
-            <GenericButton className="uppercase w-full" onClick={handleSubmit}>
+            <GenericButton className="w-full" onClick={handleSubmit}>
                 Continuar
             </GenericButton>
         </div>
@@ -139,11 +139,7 @@ function CharacterCounter({ currentLength, maxLength }) {
 function validateFormData({ name, value, message }, minValue) {
     const errors = {};
 
-    if (!name.trim()) {
-        errors.name = "Nome é obrigatório";
-    } else if (name.length < 4) {
-        errors.name = "Nome deve ter pelo menos 4 caracteres";
-    } else if (name.length > 25) {
+    if (name.length > 25) {
         errors.name = "Nome deve ter no máximo 25 caracteres";
     }
 

@@ -7,7 +7,7 @@ import { FaPix } from "react-icons/fa6";
 
 // Componente para exibir a área de pagamento
 export default function PaymentArea({ data, onBack }) {
-    const firstName = data?.name.trim() || "";
+    const firstName = data?.name.replace(/\s+/g, " ").trim() || "";
     const value = data?.value || 0;
     const message = data?.message || "";
 
@@ -24,8 +24,10 @@ export default function PaymentArea({ data, onBack }) {
 
     return (
         <div className="text-center space-y-4 w-full flex flex-col break-words">
-            <h1 className="text-2xl font-bold mt-2">Valeu {firstName}!</h1>
-            <h2 className="text-sm font-bold text-zinc-400">
+            <h1 className="text-2xl font-bold mt-2">
+                Valeu {firstName ? firstName : "pelo Pix"}!
+            </h1>
+            <h2 className="text-sm font-semibold text-zinc-400">
                 Pix gerado no valor de R$ {formatCurrency(value * 100)}
             </h2>
             <div className="relative">

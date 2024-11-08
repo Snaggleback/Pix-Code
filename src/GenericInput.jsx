@@ -40,7 +40,7 @@ const GenericInput = React.forwardRef(
                 )}
                 {isLarge ? (
                     <textarea
-                        value={value || initialValue}
+                        value={value || ""}
                         ref={inputRef}
                         className={`${commonClasses} resize-none overflow-hidden min-h-16`}
                         onInput={adjustHeight}

@@ -17,24 +17,14 @@ export default function App() {
 // Componente de contêiner para centralizar o conteúdo
 function MainContainer() {
     const [isSubmitted, setIsSubmitted] = useState(false); // Estado para alternar entre conteúdo
-    const [formData, setFormData] = useState(null); // Estado para armazenar os dados do formulário
-
-    const handlePaymentSubmit = (data) => {
-        setFormData(data); // Armazena os dados do formulário
-        setIsSubmitted(true); // Alterna para a área de pagamento
-    };
 
     return (
         <div className="flex flex-col justify-center items-center w-[400px] max-h-[90%] max-w-[90%] bg-white p-6 rounded-xl shadow-lg">
-            <div className={clsx("contents", { hidden: isSubmitted })}>
-                <PaymentCard onSubmit={handlePaymentSubmit} />
-            </div>
-            <div className={clsx("contents", { hidden: !isSubmitted })}>
-                <PaymentArea
-                    data={formData}
-                    onBack={() => setIsSubmitted(false)}
-                />
-            </div>
+            {isSubmitted ? (
+                <PaymentArea onBack={() => setIsSubmitted(false)} />
+            ) : (
+                <PaymentCard onSubmit={() => setIsSubmitted(true)} />
+            )}
         </div>
     );
 }

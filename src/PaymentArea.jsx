@@ -6,7 +6,8 @@ import { QRious } from "react-qrious";
 import { FaPix } from "react-icons/fa6";
 
 // Componente para exibir a área de pagamento
-export default function PaymentArea({ data, onBack }) {
+export default function PaymentArea({ onBack }) {
+    const data = JSON.parse(localStorage.getItem("data"));
     const firstName = data?.name.replace(/\s+/g, " ").trim() || "";
     const value = data?.value || 0;
     const message = data?.message || "";

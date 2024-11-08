@@ -1,12 +1,11 @@
-import React, { useRef, useEffect } from "react";
-import clsx from "clsx";
+import React, { useRef, useEffect, useState } from "react";
 
 // Hook para ajustar a altura do textarea
 const useAutoResize = (ref) => {
     const adjustHeight = () => {
         if (ref.current) {
-            ref.current.style.height = "auto"; // Reseta a altura para recalcular
-            ref.current.style.height = `${ref.current.scrollHeight + 2}px`; // Define a altura conforme o conteúdo
+            ref.current.style.height = "auto";
+            ref.current.style.height = `${ref.current.scrollHeight}px`;
         }
     };
     return adjustHeight;
@@ -14,48 +13,51 @@ const useAutoResize = (ref) => {
 
 // Componente genérico de input usando React.forwardRef
 const GenericInput = React.forwardRef(
-    ({ label, isCurrency = false, isMessage = false, ...propsInput }, ref) => {
-        const textareaRef = ref || useRef(null); // Usa o ref passado ou cria um novo
-        const adjustHeight = useAutoResize(textareaRef); // Hook para ajustar altura
+    ({ label, isLarge = false, initialValue, onChange, ...props }, ref) => {
+        initialValue = initialValue || "";
+        const inputRef = ref || useRef(null);
+        const adjustHeight = useAutoResize(inputRef);
+        const [value, setValue] = useState(initialValue);
 
-        // Efeito para ajustar a altura quando o conteúdo inicial é definido
         useEffect(() => {
-            if (isMessage) {
-                adjustHeight();
-            }
-        }, [isMessage, adjustHeight]);
+            if (isLarge) adjustHeight();
+        }, [isLarge, adjustHeight]);
+
+        const commonClasses =
+            "bg-transparent border border-gray-300 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 block w-full p-2.5";
+
+            const handleChange = (event) => {
+                setValue(event.target.value); // Atualiza o valor local
+                if (onChange) onChange(event); // Chama o onChange do componente pai, se fornecido
+            };
 
         return (
             <div className="mt-4">
-                <label className="block mb-2 text-sm font-medium">
-                    {label}
-                </label>
-                <div className="relative">
-                    {isCurrency && (
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-zinc-500">
-                            R$
-                        </div>
-                    )}
-                    {isMessage ? (
-                        <textarea
-                            ref={textareaRef}
-                            className="bg-transparent border border-gray-300 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 block w-full p-2.5 resize-none overflow-hidden min-h-16"
-                            onInput={adjustHeight} // Ajusta a altura ao digitar
-                            {...propsInput}
-                        />
-                    ) : (
-                        <input
-                            ref={ref}
-                            type="text"
-                            autoComplete="off"
-                            className={clsx(
-                                "bg-transparent border border-gray-300 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 block w-full p-2.5",
-                                isCurrency && "pl-10", // Adiciona espaço à esquerda se for moeda
-                            )}
-                            {...propsInput}
-                        />
-                    )}
-                </div>
+                {label && (
+                    <label className="block mb-2 text-sm font-medium">
+                        {label}
+                    </label>
+                )}
+                {isLarge ? (
+                    <textarea
+                        value={value || initialValue}
+                        ref={inputRef}
+                        className={`${commonClasses} resize-none overflow-hidden min-h-16`}
+                        onInput={adjustHeight}
+                        onChange={handleChange}
+                        {...props}
+                    />
+                ) : (
+                    <input
+                        value={value}
+                        ref={inputRef}
+                        type="text"
+                        autoComplete="off"
+                        className={commonClasses}
+                        onChange={handleChange}
+                        {...props}
+                    />
+                )}
             </div>
         );
     },

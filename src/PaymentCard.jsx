@@ -43,10 +43,9 @@ function UserInfo({ name, subtitle }) {
 function Form({ onSubmit }) {
     const [errors, setErrors] = useState({});
     const [messageLength, setMessageLength] = useState(0); // Estado para o comprimento da mensagem
-    const nameRef = useRef();
-    const valueRef = useRef();
-    const messageRef = useRef();
+    const [nameRef, valueRef, messageRef] = [useRef(), useRef(), useRef()];
     const minValue = 1;
+    const data = JSON.parse(localStorage.getItem("data")) || {};
 
     const handleSubmit = () => {
         const formData = {
@@ -59,7 +58,9 @@ function Form({ onSubmit }) {
         setErrors(validationErrors);
 
         if (!Object.keys(validationErrors).length) {
-            onSubmit(formData);
+            onSubmit();
+            localStorage.clear();
+            localStorage.setItem("data", JSON.stringify(formData));
         }
     };
 
@@ -74,6 +75,7 @@ function Form({ onSubmit }) {
                 label="Qual seu nome?"
                 name="name"
                 id="name"
+                initialValue={data.name}
             />
             {errors.name && <ErrorMessage message={errors.name} />}
 
@@ -82,6 +84,7 @@ function Form({ onSubmit }) {
                 label="Valor"
                 name="value"
                 id="value"
+                initialValue={data.value}
             />
             <MinValueErrorMessage minValue={minValue} error={errors.value} />
 
@@ -91,8 +94,9 @@ function Form({ onSubmit }) {
                 maxLength={35}
                 name="message"
                 id="message"
-                isMessage
+                isLarge
                 onChange={handleMessageChange} // Adiciona o evento onChange
+                initialValue={data.message}
             />
             {errors.message && <ErrorMessage message={errors.message} />}
 

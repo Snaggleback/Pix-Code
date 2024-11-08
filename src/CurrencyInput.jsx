@@ -1,60 +1,69 @@
 import React, { useState, useEffect } from "react";
-import GenericInput from "./GenericInput";
 
-// Componente para entrada de moeda
-const CurrencyInput = React.forwardRef(({ ...props }, ref) => {
-    const [value, setValue] = useState("0,00"); // Estado do valor da moeda
+const CurrencyInput = React.forwardRef(
+    ({ initialValue, label, ...props }, ref) => {
+        initialValue = formatCurrency(initialValue * 100 || 0);
+        const [value, setValue] = useState(initialValue);
 
-    // Função para permitir apenas números e teclas especiais
-    const allowOnlyNumbers = (event) => {
-        const allowedKeys = new Set([
-            "Backspace",
-            "Delete",
-            "ArrowUp",
-            "ArrowDown",
-            "ArrowLeft",
-            "ArrowRight",
-            "Enter",
-            "Escape",
-        ]);
+        const allowOnlyNumbers = (event) => {
+            const allowedKeys = new Set([
+                "Backspace",
+                "Delete",
+                "ArrowUp",
+                "ArrowDown",
+                "ArrowLeft",
+                "ArrowRight",
+                "Enter",
+                "Escape",
+                "c",
+                "v",
+                "a",
+                "x",
+                "r", // Inclui atalhos com Ctrl
+            ]);
 
-        const allowedCtrlKeys = new Set(["c", "v", "a", "x", "r"]);
-
-        if (event.ctrlKey || event.metaKey) {
-            if (allowedCtrlKeys.has(event.key.toLowerCase())) {
-                return; // Permite as combinações com Ctrl
+            if (
+                !/[0-9]/.test(event.key) &&
+                !allowedKeys.has(event.key) &&
+                !(
+                    event.ctrlKey ||
+                    (event.metaKey && allowedKeys.has(event.key.toLowerCase()))
+                )
+            ) {
+                event.preventDefault();
             }
-        }
+        };
 
-        // Impede a ação padrão se a tecla não for permitida
-        if (!/[0-9]/.test(event.key) && !allowedKeys.has(event.key)) {
-            event.preventDefault(); // Impede a digitação de caracteres não permitidos
-        }
-    };
+        const handleChangeValue = (event) => {
+            setValue(formatCurrency(event.target.value));
+        };
 
-    // Atualiza o valor formatado ao alterar o input
-    const handleChangeValue = (event) => {
-        const formattedValue = formatCurrency(event.target.value);
-        setValue(formattedValue);
-    };
+        useEffect(() => setValue(value), []);
 
-    // Efeito para definir o valor inicial, caso seja necessário
-    useEffect(() => {
-        setValue("0,00");
-    }, []);
-
-    return (
-        <GenericInput
-            inputMode="numeric"
-            onKeyDown={allowOnlyNumbers}
-            value={value}
-            onChange={handleChangeValue}
-            isCurrency
-            {...props}
-            ref={ref}
-        />
-    );
-});
+        return (
+            <div className="mt-4">
+                <label className="block mb-2 text-sm font-medium">
+                    {label}
+                </label>
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-zinc-500">
+                        R$
+                    </div>
+                    <input
+                        className="bg-transparent border border-gray-300 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 block w-full p-2.5 pl-10"
+                        type="text"
+                        inputMode="numeric"
+                        onKeyDown={allowOnlyNumbers}
+                        value={value}
+                        onChange={handleChangeValue}
+                        ref={ref}
+                        {...props}
+                    />
+                </div>
+            </div>
+        );
+    },
+);
 
 // Formata o valor como moeda
 export function formatCurrency(value) {

@@ -30,7 +30,7 @@ function MainContainer() {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center w-[400px] max-h-[90%] max-w-[90%] bg-white p-6 rounded-xl shadow-lg">
+        <div className="flex flex-col justify-center items-center w-[400px] h-max max-w-[90%] bg-white p-6 rounded-xl shadow-lg">
             {isLoading ? (
                 // Se estiver carregando, exibe a animação de carregamento
                 <LoadingSpinner />

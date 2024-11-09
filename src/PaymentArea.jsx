@@ -48,12 +48,18 @@ export default function PaymentArea({ onBack }) {
             </div>
             {/* Descrição sobre a flexibilidade do pagamento com Pix */}
             <p className="text-zinc-700 text-sm">
-                Este código Pix pode ser pago quando quiser e quanto quiser.
+                Este código Pix permite pagamento no valor e no momento que
+                preferir. Clique abaixo para copiar o código "copia e cola".
             </p>
             {/* Título para a área de Copia e Cola do Pix */}
             <h2 className="text-lg font-bold">Pix Copia e Cola</h2>
             {/* Campo de entrada somente leitura para exibir o código Pix */}
-            <ReadOnlyInput defaultValue={copyPastePix} />
+            <ReadOnlyInput
+                defaultValue={copyPastePix}
+                onCopiedText={
+                    "Código copiado com sucesso! Abra o aplicativo do banco e cole o código para concluir o pagamento."
+                }
+            />
             {/* Botão de voltar para retornar à página anterior */}
             <GenericButton className="w-full" onClick={onBack}>
                 Voltar

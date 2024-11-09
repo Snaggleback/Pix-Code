@@ -2,7 +2,7 @@ import { FaClipboard } from "react-icons/fa6"; // Importa o ícone de clipboard 
 import { useState } from "react"; // Importa o hook useState do React para gerenciar o estado
 
 // Componente ReadOnlyInput: exibe um campo de input somente leitura com a funcionalidade de copiar o texto para a área de transferência
-export default function ReadOnlyInput({ defaultValue }) {
+export default function ReadOnlyInput({ defaultValue, onCopiedText }) {
     // Estado para controlar se o input está ou não focado
     const [isFocused, setIsFocused] = useState(false);
 
@@ -50,7 +50,7 @@ export default function ReadOnlyInput({ defaultValue }) {
             {/* Exibe a mensagem de confirmação de cópia somente quando o input estiver focado */}
             {isFocused && (
                 <span className="text-green-600 text-sm">
-                    Código copiado com sucesso!{" "}
+                    {onCopiedText} {" "}
                     {/* Mensagem que confirma a cópia */}
                 </span>
             )}

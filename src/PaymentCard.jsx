@@ -67,7 +67,8 @@ function Form({ onSubmit }) {
         // Coleta os dados do formulário
         const formData = {
             name: nameRef.current.value,
-            value: parseFloat(unformatCurrency(valueRef.current.value)), // Desformata o valor para um número
+            value: valueRef.current.value,
+            numericValue: parseFloat(unformatCurrency(valueRef.current.value)),
             message: messageRef.current.value,
         };
 
@@ -168,7 +169,7 @@ function CharacterCounter({ currentLength, maxLength }) {
 }
 
 // Função para validar os dados do formulário
-function validateFormData({ name, value, message }, minValue) {
+function validateFormData({ name, numericValue, message }, minValue) {
     const errors = {};
 
     // Valida o campo 'name' (nome do usuário)
@@ -177,9 +178,9 @@ function validateFormData({ name, value, message }, minValue) {
     }
 
     // Valida o campo 'value' (valor do Pix)
-    if (!value || isNaN(value) || value <= 0) {
+    if (!numericValue || isNaN(numericValue) || numericValue <= 0) {
         errors.value = "Valor é obrigatório e deve ser um número positivo";
-    } else if (value < minValue) {
+    } else if (numericValue < minValue) {
         errors.value = "O valor está abaixo do permitido";
     }
 

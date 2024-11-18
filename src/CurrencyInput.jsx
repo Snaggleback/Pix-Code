@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 const CurrencyInput = React.forwardRef(
     ({ initialValue, label, ...props }, ref) => {
         // Formata o valor inicial para o formato de moeda e define o estado value
-        initialValue = formatCurrency(initialValue * 100 || 0);
         const [value, setValue] = useState(initialValue);
 
         // Função para permitir apenas números e algumas teclas especiais

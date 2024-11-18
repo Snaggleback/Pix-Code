@@ -1,7 +1,6 @@
 import GenericButton from "./GenericButton"; // Importa o componente de botão genérico
 import ReadOnlyInput from "./ReadOnlyInput"; // Importa o componente de input somente leitura
 import PIXCode from "../PIXCode"; // Importa a classe PIXCode para gerar o código Pix
-import { formatCurrency } from "./CurrencyInput"; // Importa a função de formatação de moeda
 import { QRious } from "react-qrious"; // Importa o componente QRious para gerar o código QR
 import { FaPix } from "react-icons/fa6"; // Importa o ícone do Pix
 
@@ -13,13 +12,14 @@ export default function PaymentArea({ onBack }) {
     // Extrai os valores de nome, valor e mensagem dos dados armazenados
     const firstName = data?.name.replace(/\s+/g, " ").trim() || ""; // Limpa o nome removendo espaços extras
     const value = data?.value || 0; // Valor do pagamento (valor padrão é 0)
+    const numericValue = data?.numericValue || 0;
     const message = data?.message || ""; // Mensagem associada ao pagamento (valor padrão é uma string vazia)
 
     // Cria uma instância do objeto PIXCode com os dados necessários
     const pixCode = new PIXCode(
         "d5d4dbee-b1eb-4c8b-82b7-7fd1acb519b2", // Chave do recebedor do Pix
         "random", // Tipo de código (pode ser um valor qualquer, mas "random" é um marcador)
-        value, // Valor do pagamento
+        numericValue, // Valor do pagamento
         "Italo S Luz", // Nome do recebedor
         "", // (opcional) informações adicionais sobre o recebedor
         message, // Mensagem associada ao pagamento
@@ -36,7 +36,7 @@ export default function PaymentArea({ onBack }) {
             </h1>
             {/* Subtítulo com o valor do Pix formatado */}
             <h2 className="text-sm text-zinc-400">
-                Pix gerado no valor de R$ {formatCurrency(value * 100)}
+                Pix gerado no valor de R$ {value}
             </h2>
             <div className="relative">
                 {/* Geração do código QR usando o valor do Pix */}

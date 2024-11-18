@@ -50,9 +50,9 @@ function LoadingSpinner() {
     return (
         <div className="flex items-center justify-center py-4">
             {/* Animação de carregamento usando borda circular com rotação */}
-            <div className="w-6 h-6 border-2 border-t-transparent border-blue-500 rounded-full animate-spin"></div>
+            <div className="w-6 h-6 border-2 border-t-transparent border-red-500 rounded-full animate-spin"></div>
             {/* Texto informando que está carregando */}
-            <p className="ml-3 text-blue-500">Carregando...</p>
+            <p className="ml-3 text-red-500">Carregando...</p>
         </div>
     );
 }

@@ -133,7 +133,7 @@ function Form({ onSubmit }) {
                 maxLength={35}
             />
             {/* Botão de envio */}
-            <GenericButton className="w-full" onClick={handleSubmit}>
+            <GenericButton className="text-white bg-gradient-to-l from-red-600 to-red-700" onClick={handleSubmit}>
                 Continuar
             </GenericButton>
         </div>

@@ -2,7 +2,7 @@ import GenericButton from "./GenericButton"; // Importa o componente de botão g
 import ReadOnlyInput from "./ReadOnlyInput"; // Importa o componente de input somente leitura
 import PIXCode from "../PIXCode"; // Importa a classe PIXCode para gerar o código Pix
 import { QRious } from "react-qrious"; // Importa o componente QRious para gerar o código QR
-import { FaPix } from "react-icons/fa6"; // Importa o ícone do Pix
+import { FaGift } from "react-icons/fa6"
 
 // Componente para exibir a área de pagamento
 export default function PaymentArea({ onBack }) {
@@ -43,7 +43,7 @@ export default function PaymentArea({ onBack }) {
                 <QRious value={copyPastePix} size={250} className="m-auto" />
                 <div className="absolute inset-0 w-full h-full flex">
                     {/* Ícone do Pix posicionado sobre o código QR */}
-                    <FaPix className="m-auto w-12 h-12 bg-white p-2.5 text-orange-500"></FaPix>
+                    <FaGift className="m-auto w-12 h-12 bg-white p-2.5 text-red-600"></FaGift>
                 </div>
             </div>
             {/* Descrição sobre a flexibilidade do pagamento com Pix */}
@@ -61,7 +61,7 @@ export default function PaymentArea({ onBack }) {
                 }
             />
             {/* Botão de voltar para retornar à página anterior */}
-            <GenericButton className="w-full" onClick={onBack}>
+            <GenericButton className="text-white bg-gradient-to-l from-red-600 to-red-700 " onClick={onBack}>
                 Voltar
             </GenericButton>
         </div>

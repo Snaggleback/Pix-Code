@@ -8,7 +8,7 @@ import { useState } from "react"; // Importa o hook useState para gerenciar esta
 export default function App() {
     return (
         // Container que ocupa toda a tela, com fundo escuro e centralização do conteúdo
-        <div className="w-screen h-screen bg-zinc-900 flex items-center justify-center">
+        <div className="w-screen h-screen bg-[url('./assets/background.png')] bg-repeat flex items-center justify-center">
             <MainContainer /> {/* Renderiza o componente MainContainer */}
         </div>
     );

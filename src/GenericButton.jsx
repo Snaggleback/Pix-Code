@@ -11,7 +11,7 @@ export default function GenericButton({
         <button
             type={type} // Definindo o tipo do botão (ex.: "button", "submit", "reset")
             className={clsx(
-                "w-full text-white bg-zinc-950 p-4 rounded-lg mt-4", // Classes padrão do botão
+                "w-full p-4 rounded-lg mt-4", // Classes padrão do botão
                 className, // Adiciona classes extras fornecidas pela prop `className`
             )}
             aria-label={children ? undefined : "Botão genérico"} // Acessibilidade: define um rótulo acessível se não houver conteúdo (children)

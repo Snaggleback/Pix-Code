@@ -3,13 +3,15 @@ import "./App.css"; // Importa o arquivo de estilos CSS para a aplicação
 import PaymentCard from "./PaymentCard"; // Importa o componente PaymentCard
 import PaymentArea from "./PaymentArea"; // Importa o componente PaymentArea
 import { useState } from "react"; // Importa o hook useState para gerenciar estados
+import FooterAtribbuition from "./FooterAtribbuition";
 
 // Componente principal da aplicação
 export default function App() {
     return (
         // Container que ocupa toda a tela, com fundo escuro e centralização do conteúdo
-        <div className="w-screen h-screen bg-[url('./assets/background.png')] bg-repeat flex items-center justify-center">
+        <div className="w-screen h-screen bg-[url('./assets/background.png')] bg-repeat flex items-center justify-center flex-col">
             <MainContainer /> {/* Renderiza o componente MainContainer */}
+            <FooterAtribbuition></FooterAtribbuition>
         </div>
     );
 }

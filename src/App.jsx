@@ -9,7 +9,7 @@ import FooterAtribbuition from "./FooterAtribbuition";
 export default function App() {
     return (
         // Container que ocupa toda a tela, com fundo escuro e centralização do conteúdo
-        <div className="w-screen h-screen bg-[url('./assets/background.png')] bg-repeat flex items-center justify-center flex-col">
+        <div className="w-screen h-screen bg-gradient-to-r from-zinc-950 to-zinc-900 flex items-center justify-center flex-col">
             <MainContainer /> {/* Renderiza o componente MainContainer */}
             <FooterAtribbuition></FooterAtribbuition>
         </div>
@@ -52,9 +52,9 @@ function LoadingSpinner() {
     return (
         <div className="flex items-center justify-center py-4">
             {/* Animação de carregamento usando borda circular com rotação */}
-            <div className="w-6 h-6 border-2 border-t-transparent border-red-500 rounded-full animate-spin"></div>
+            <div className="w-6 h-6 border-2 border-t-transparent border-zinc-800 rounded-full animate-spin"></div>
             {/* Texto informando que está carregando */}
-            <p className="ml-3 text-red-500">Carregando...</p>
+            <p className="ml-3 text-zinc-800">Carregando...</p>
         </div>
     );
 }

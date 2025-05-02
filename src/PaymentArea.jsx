@@ -43,7 +43,7 @@ export default function PaymentArea({ onBack }) {
                 <QRious value={copyPastePix} size={250} className="m-auto" />
                 <div className="absolute inset-0 w-full h-full flex">
                     {/* Ícone do Pix posicionado sobre o código QR */}
-                    <FaGift className="m-auto w-12 h-12 bg-white p-2.5 text-red-600"></FaGift>
+                    <FaGift className="m-auto w-12 h-12 bg-white p-2.5 text-black"></FaGift>
                 </div>
             </div>
             {/* Descrição sobre a flexibilidade do pagamento com Pix */}
@@ -61,7 +61,7 @@ export default function PaymentArea({ onBack }) {
                 }
             />
             {/* Botão de voltar para retornar à página anterior */}
-            <GenericButton className="text-white bg-gradient-to-l from-red-600 to-red-700 " onClick={onBack}>
+            <GenericButton className="text-white bg-gradient-to-l from-zinc-600 to-zinc-700 " onClick={onBack}>
                 Voltar
             </GenericButton>
         </div>

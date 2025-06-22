@@ -1,0 +1,19 @@
+{
+    "name": "Faça um Pix! — Ítalo",
+    "short_name": "Faça um Pix!",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#5D749D",
+    "background_color": "#5D749D",
+    "display": "standalone"
+}

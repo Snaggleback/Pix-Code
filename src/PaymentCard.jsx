@@ -3,6 +3,7 @@ import GenericInput from "./GenericInput"; // Componente genérico de input
 import CurrencyInput from "./CurrencyInput"; // Componente para input de valores monetários
 import { unformatCurrency, formatCurrency } from "./CurrencyInput"; // Funções de formatação de valores monetários
 import { useState, useRef } from "react"; // Hooks do React para gerenciar estado e referências
+import profileImage from "./assets/android-chrome-192x192.png"; // Imagem de perfil
 import clsx from "clsx"; // Biblioteca para classNames condicionais
 
 // Componente principal do cartão de pagamento
@@ -11,11 +12,11 @@ export default function PaymentCard({ onSubmit }) {
         <>
             {/* Exibe a imagem de perfil do usuário */}
             <UserProfileImage
-                src="https://github.com/snaggleback.png"
+                src={profileImage}
                 alt="Foto de perfil do usuário"
             />
             {/* Exibe as informações do usuário */}
-            <UserInfo name="Ítalo" subtitle="Envie um pix" />
+            <UserInfo name="Ítalo" subtitle="Faça um pix para 👆" />
             {/* Exibe o formulário com os dados do pagamento */}
             <Form onSubmit={onSubmit} />
         </>
